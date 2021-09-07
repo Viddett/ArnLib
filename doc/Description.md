@@ -22,8 +22,8 @@ unacceptable, e.g. in the tree viewer of the ArnBrowser tool.
 
 A relative path is also called the [local path](#gen_localPath), e.g.
 "Sys/Discover/This/Service/value".
-
-Each part in a given path is dynamically added as needed, i.e. any path can be used without
+  
+Folders that does not already exist in a given path is dynamically added as needed, i.e. any path can be used without
 explicitly creating each folder in advance.
 <Br><Br>
 
@@ -36,7 +36,7 @@ object "once".
 
 For continous access to an _ARN Data Object_ its better to use an ArnItem. This will be a handle
 to the object that give fast access. It will also provide signals for changed object. ArnItem
-is QObject based and has its charateristics.
+is QObject based and inherits its charateristics.
 
 Yet another way to access an _ARN Data Object_, is an ArnBasicItem.  This will give a basic
 handle to the object. It is fast, small and is not based on QObject. As such it can not use
@@ -46,9 +46,9 @@ Normally ArnItem should be used, as it has a higher level interface with QObject
 and slots. Typically ArnBasicItem is used when no signal is needed, i.e only using direct
 access with setValue and toXXX methods.
 If you need a lot of ArnBasicItems and memory foot print (or speed) is important, You can
-consider to use ArnBasicItem with ArnEvents even if it will be harder to code.
+consider using ArnBasicItem with ArnEvents, however the code might become more complex.
 
-You can expect ArnBasicItem to be lees than a third of the size of an ArnItem. Tests has
+You can expect ArnBasicItem to be less than a third of the size of an ArnItem. Tests has
 shown ArnBasicItem to take half the time assigning an integer, compared to ArnItem.
 <Br><Br>
 
@@ -116,7 +116,7 @@ will share and access the [Discover remote](#gen_discoverRemote) _service name_ 
 Naming conventions    {#gen_naming}
 ------------------
 These rules must not be obeyed, but are recommended, to get the most benefits of the
-%Arn echo system, like the ArnBrowser tool.
+%Arn eco-system, like the ArnBrowser tool.
 
 * First level folder empty, e.g. "//MyGlobalFolder/Date/value", is a global path and is
   [shared](#gen_shareArnobj) to ARN server and clients.
@@ -178,7 +178,7 @@ It contains logic for handling [sequence check](#gen_pipeSeqCheck) and
 [anti congest](#gen_pipeAntiCongest).
 
 Data stream to and from a pipe can be controlled using ArnItemValve class.
-Actually ArnItemValve can controll any ArnItemB derived class.
+Actually ArnItemValve can control any ArnItemB derived class.
 <Br><Br>
 
 ### Pipe sequence check ###    {#gen_pipeSeqCheck}
@@ -354,10 +354,10 @@ ClientSyncMode doesn't affect a pipe. Default mode is StdAutoMaster.
     Dynamic auto master mode, general purpose, prohibit Null value sync.
     Can be used for one time initial setup, thereafter server can be Master for an object.
     + Master can be set explicitly with ArnItem::setMaster().
-      This is overided if the _ARN Data Object_ has a Null value (not assigned), then
+      This is overridden if the _ARN Data Object_ has a Null value (not assigned), then
       the object becomes temporary Slave for next connection.
     + If client has an unsynced local update (during not connected state), this
-      _ARN Data Object_ becomes temporary Master for just next connection.
+      _ARN Data Object_ becomes temporary Master for the next connection only.
     + If the client is not Master for an _ARN Data Object_ but the server only has a Null
       value, the clients value (non Null) is still used.
 * **ImplicitMaster**
@@ -366,7 +366,7 @@ ClientSyncMode doesn't affect a pipe. Default mode is StdAutoMaster.
     + Client local assign to an _ARN Data Object_ gives permanent Master mode for this object.
       This implicit Master mode setting is done once when next connection is established.
     + Null values can be synced both from client and server.
-    + If a client _ARN Data Object_ is set booth as [Persistent](#gen_persistArnobj) and Master
+    + If a client _ARN Data Object_ is set both as [Persistent](#gen_persistArnobj) and Master
       with a Null value before connection, the Master mode is initially overridden and the
       servers value is synced to the client.
 * **ExplicitMaster**
@@ -376,7 +376,7 @@ ClientSyncMode doesn't affect a pipe. Default mode is StdAutoMaster.
     + Master can be set explicitly with ArnItem::setMaster().
       Client has no other way to become Master for an _ARN Data Object_.
     + Null values can be synced both from client and server.
-    + If a client _ARN Data Object_ is set booth as [Persistent](#gen_persistArnobj) and Master
+    + If a client _ARN Data Object_ is set both as [Persistent](#gen_persistArnobj) and Master
       with a Null value before connection, the Master mode is initially overridden and the
       servers value is synced to the client.
 <Br><Br>
@@ -438,7 +438,7 @@ Under the hood Qt converts a signal that uses default argument(s) into methods w
 name and all variation of the arguments. I.e. One method with all arguments, one with
 all but the last default argument, and so on until there is no more default arguments.
 When emitting the signal with some number of arguments, all of the signal methods will
-be exited.
+be excited.
 
 ArnRpc has to deal with this default argument mechanism, otherwise there would be multiple
 calling messages for just one original signal emit.
@@ -669,7 +669,7 @@ remote control the _service name_ is available at [local path](#gen_localPath)
 "Sys/Discover/This/Service/value".
 
 ArnDiscoverRemote can make an internal ArnServer, when there is no need to access the
-ArnServer class. This is usually the case in an client application. The ArnServer is then
+ArnServer class. This is usually the case in a client application. The ArnServer is then
 merely used to make the discover functionality remote controlled.
 
 Remote controlled client connections can be added. Each ArnClient is handled by an
